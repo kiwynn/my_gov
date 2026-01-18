@@ -1,4 +1,4 @@
-<!-- idcard.html -->
+<!-- idcard.html (geri düymə artıq index.html-ə qaytarır) -->
 <!doctype html>
 <html lang="az">
 <head>
@@ -18,18 +18,10 @@
 
 <style>
 :root{
-  --bg:#0b0f14;
-  --topbar:#141a22;
-
-  --outer:#1a1f26;
-  --outer-edge:rgba(255,255,255,.06);
-
   --muted2:rgba(255,255,255,.62);
 }
-
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html, body{touch-action:pan-x pan-y}
-
 body{
   margin:0;
   min-height:100vh;
@@ -37,8 +29,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Arial,sans-serif;
   color:#fff;
 }
-
-/* ===== TOP BAR ===== */
+.big-top-gap{height:60px;}
 .page-top{
   position:sticky;
   top:0;
@@ -47,14 +38,12 @@ body{
   padding-bottom:10px;
   background:linear-gradient(180deg, rgba(11,15,20,1) 0%, rgba(11,15,20,.92) 100%);
 }
-
 .page-top-inner{
   padding:0 16px;
   display:grid;
   grid-template-columns:40px 1fr 40px;
   align-items:center;
 }
-
 .top-btn{
   width:36px;
   height:36px;
@@ -65,21 +54,17 @@ body{
   color:#e7eefc;
   opacity:.95;
 }
-
 .top-title{
   text-align:center;
   font-size:16px;
   font-weight:700;
   letter-spacing:.2px;
 }
-
-/* ===== CARD WRAPPER ===== */
 .wrap{
   padding:18px 16px calc(28px + env(safe-area-inset-bottom));
   display:flex;
   justify-content:center;
 }
-
 .card{
   width:100%;
   max-width:420px;
@@ -89,15 +74,12 @@ body{
   box-shadow:0 16px 40px rgba(0,0,0,.55);
   padding:16px;
 }
-
-/* ===== TOP ROW ===== */
 .top-row{
   display:grid;
   grid-template-columns:92px 1fr 44px;
   gap:14px;
   align-items:start;
 }
-
 .photo{
   width:92px;
   height:112px;
@@ -106,35 +88,25 @@ body{
   border:1px solid rgba(255,255,255,.12);
   background:#1b222c;
 }
-
-.top-info{
-  padding-top:2px;
-}
-
-.top-line{
-  margin-bottom:12px;
-}
-
+.top-info{padding-top:2px;}
+.top-line{margin-bottom:12px;}
 .top-label{
   font-size:12.5px;
   color:var(--muted2);
   margin-bottom:4px;
 }
-
 .top-value{
   font-size:14px;
-  font-weight:400; /* not bold */
+  font-weight:400;
   letter-spacing:.2px;
   color:#ffffff;
 }
-
 .copy-col{
   display:flex;
   flex-direction:column;
   gap:10px;
   padding-top:2px;
 }
-
 .copy-btn{
   width:40px;
   height:40px;
@@ -145,34 +117,26 @@ body{
   align-items:center;
   justify-content:center;
 }
-
-/* ===== FIELDS ===== */
 .fields{
   margin-top:12px;
   padding-top:10px;
   border-top:1px solid rgba(255,255,255,.06);
 }
-
-.field{
-  margin-top:12px;
-}
-
+.field{margin-top:12px;}
 .field-label{
   font-size:12.5px;
   color:var(--muted2);
   margin-bottom:6px;
 }
-
 .field-value{
   font-size:13.3px;
-  font-weight:400; /* not bold */
+  font-weight:400;
   letter-spacing:.12px;
   color:#ffffff;
   line-height:1.25;
   white-space:pre-wrap;
   word-break:break-word;
 }
-
 .signature{
   margin-top:18px;
   padding-top:12px;
@@ -181,13 +145,11 @@ body{
   align-items:center;
   gap:12px;
 }
-
 .signature-label{
   font-size:12.5px;
   color:var(--muted2);
   white-space:nowrap;
 }
-
 .signature-img{
   flex:1;
   height:40px;
@@ -200,6 +162,7 @@ body{
 </head>
 
 <body>
+<div class="big-top-gap"></div>
 
 <div class="page-top">
   <div class="page-top-inner">
@@ -221,7 +184,6 @@ body{
 
 <div class="wrap">
   <div class="card">
-
     <div class="top-row">
       <img class="photo" src="id_pic.png" alt="ID Photo">
 
@@ -330,7 +292,6 @@ body{
         <img class="signature-img" src="signiture.png" alt="Signature">
       </div>
     </div>
-
   </div>
 </div>
 
@@ -393,7 +354,6 @@ fetch("identity.json", { cache: "no-store" })
 document.getElementById("copyFin").addEventListener("click", () => {
   if (_identityCache) copyText(_identityCache.fin);
 });
-
 document.getElementById("copyIdNumber").addEventListener("click", () => {
   if (_identityCache) copyText(_identityCache.idNumber);
 });
@@ -404,6 +364,5 @@ if ("serviceWorker" in navigator) {
   });
 }
 </script>
-
 </body>
 </html>
