@@ -1,0 +1,409 @@
+<!-- idcard.html -->
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, minimum-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#0b0f14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="mygov">
+
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/apple-touch-icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png">
+
+<title>Şəxsiyyət vəsiqəsi</title>
+
+<style>
+:root{
+  --bg:#0b0f14;
+  --topbar:#141a22;
+
+  --outer:#1a1f26;
+  --outer-edge:rgba(255,255,255,.06);
+
+  --muted2:rgba(255,255,255,.62);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html, body{touch-action:pan-x pan-y}
+
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(180deg,#0b0f14 0%,#070a0e 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,Roboto,Arial,sans-serif;
+  color:#fff;
+}
+
+/* ===== TOP BAR ===== */
+.page-top{
+  position:sticky;
+  top:0;
+  z-index:10;
+  padding-top:calc(env(safe-area-inset-top) + 10px);
+  padding-bottom:10px;
+  background:linear-gradient(180deg, rgba(11,15,20,1) 0%, rgba(11,15,20,.92) 100%);
+}
+
+.page-top-inner{
+  padding:0 16px;
+  display:grid;
+  grid-template-columns:40px 1fr 40px;
+  align-items:center;
+}
+
+.top-btn{
+  width:36px;
+  height:36px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#e7eefc;
+  opacity:.95;
+}
+
+.top-title{
+  text-align:center;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+/* ===== CARD WRAPPER ===== */
+.wrap{
+  padding:18px 16px calc(28px + env(safe-area-inset-bottom));
+  display:flex;
+  justify-content:center;
+}
+
+.card{
+  width:100%;
+  max-width:420px;
+  background:linear-gradient(180deg, rgba(26,31,38,.96) 0%, rgba(26,31,38,.90) 100%);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:28px;
+  box-shadow:0 16px 40px rgba(0,0,0,.55);
+  padding:16px;
+}
+
+/* ===== TOP ROW ===== */
+.top-row{
+  display:grid;
+  grid-template-columns:92px 1fr 44px;
+  gap:14px;
+  align-items:start;
+}
+
+.photo{
+  width:92px;
+  height:112px;
+  border-radius:9px;
+  object-fit:cover;
+  border:1px solid rgba(255,255,255,.12);
+  background:#1b222c;
+}
+
+.top-info{
+  padding-top:2px;
+}
+
+.top-line{
+  margin-bottom:12px;
+}
+
+.top-label{
+  font-size:12.5px;
+  color:var(--muted2);
+  margin-bottom:4px;
+}
+
+.top-value{
+  font-size:14px;
+  font-weight:400; /* not bold */
+  letter-spacing:.2px;
+  color:#ffffff;
+}
+
+.copy-col{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding-top:2px;
+}
+
+.copy-btn{
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* ===== FIELDS ===== */
+.fields{
+  margin-top:12px;
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+
+.field{
+  margin-top:12px;
+}
+
+.field-label{
+  font-size:12.5px;
+  color:var(--muted2);
+  margin-bottom:6px;
+}
+
+.field-value{
+  font-size:13.3px;
+  font-weight:400; /* not bold */
+  letter-spacing:.12px;
+  color:#ffffff;
+  line-height:1.25;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.signature{
+  margin-top:18px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.06);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.signature-label{
+  font-size:12.5px;
+  color:var(--muted2);
+  white-space:nowrap;
+}
+
+.signature-img{
+  flex:1;
+  height:40px;
+  border-radius:10px;
+  object-fit:contain;
+  background:#ffffff;
+  border:1px solid rgba(0,0,0,.18);
+}
+</style>
+</head>
+
+<body>
+
+<div class="page-top">
+  <div class="page-top-inner">
+    <a class="top-btn" href="index.html" aria-label="Back">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M15 18l-6-6 6-6"/>
+      </svg>
+    </a>
+
+    <div class="top-title">Şəxsiyyət vəsiqəsi</div>
+
+    <div class="top-btn" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <circle cx="12" cy="12" r="1.2"/><circle cx="19" cy="12" r="1.2"/><circle cx="5" cy="12" r="1.2"/>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="card">
+
+    <div class="top-row">
+      <img class="photo" src="id_pic.png" alt="ID Photo">
+
+      <div class="top-info">
+        <div class="top-line">
+          <div class="top-label">Fərdi identifikasiya nömrəsi:</div>
+          <div class="top-value" id="finValue"></div>
+        </div>
+
+        <div class="top-line" style="margin-bottom:0">
+          <div class="top-label">Vəsiqənin nömrəsi:</div>
+          <div class="top-value" id="idNumberValue"></div>
+        </div>
+      </div>
+
+      <div class="copy-col">
+        <div class="copy-btn" id="copyFin" aria-label="Copy FIN">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+            <rect width="14" height="14" x="8" y="8" rx="2"/>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+          </svg>
+        </div>
+
+        <div class="copy-btn" id="copyIdNumber" aria-label="Copy ID Number">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2">
+            <rect width="14" height="14" x="8" y="8" rx="2"/>
+            <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="fields">
+      <div class="field">
+        <div class="field-label">Soyadı, adı, atasının adı:</div>
+        <div class="field-value" id="fullNameValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Doğulduğu tarix:</div>
+        <div class="field-value" id="birthDateValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Doğulduğu yer:</div>
+        <div class="field-value" id="birthPlaceValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Qeydiyyat ünvanı:</div>
+        <div class="field-value" id="registrationAddressValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Vətəndaşlığı:</div>
+        <div class="field-value" id="citizenshipValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Verilmə tarixi:</div>
+        <div class="field-value" id="issueDateValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Etibarlılıq müddəti:</div>
+        <div class="field-value" id="expiryDateValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Qan qrupu:</div>
+        <div class="field-value" id="bloodGroupValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Cinsi:</div>
+        <div class="field-value" id="genderValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Gözlərinin rəngi:</div>
+        <div class="field-value" id="eyeColorValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Boyu:</div>
+        <div class="field-value" id="heightValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Ailə vəziyyəti:</div>
+        <div class="field-value" id="maritalStatusValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Hərbi mükəlləfiyyəti:</div>
+        <div class="field-value" id="militaryObligationValue"></div>
+      </div>
+
+      <div class="field">
+        <div class="field-label">Vəsiqəni verən orqanın adı:</div>
+        <div class="field-value" id="issuingAuthorityValue"></div>
+      </div>
+
+      <div class="signature">
+        <div class="signature-label">Vəsiqə sahibinin imzası:</div>
+        <img class="signature-img" src="signiture.png" alt="Signature">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("gesturestart", (e) => e.preventDefault(), { passive: false });
+document.addEventListener("gesturechange", (e) => e.preventDefault(), { passive: false });
+document.addEventListener("gestureend", (e) => e.preventDefault(), { passive: false });
+document.addEventListener("dblclick", (e) => e.preventDefault(), { passive: false });
+
+let _identityCache = null;
+
+function setText(id, v){
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.textContent = (v === null || v === undefined) ? "" : String(v);
+}
+
+function copyText(t){
+  const text = String(t || "");
+  if (!text) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text);
+    return;
+  }
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+fetch("identity.json", { cache: "no-store" })
+  .then(r => r.json())
+  .then(d => {
+    _identityCache = d;
+
+    setText("finValue", d.fin);
+    setText("idNumberValue", d.idNumber);
+
+    setText("fullNameValue", d.fullName);
+    setText("birthDateValue", d.birthDate);
+    setText("birthPlaceValue", d.birthPlace);
+    setText("registrationAddressValue", d.registrationAddress);
+    setText("citizenshipValue", d.citizenship);
+    setText("issueDateValue", d.issueDate);
+    setText("expiryDateValue", d.expiryDate);
+    setText("bloodGroupValue", d.bloodGroup);
+    setText("genderValue", d.gender);
+    setText("eyeColorValue", d.eyeColor);
+    setText("heightValue", d.height);
+    setText("maritalStatusValue", d.maritalStatus);
+    setText("militaryObligationValue", d.militaryObligation);
+    setText("issuingAuthorityValue", d.issuingAuthority);
+  });
+
+document.getElementById("copyFin").addEventListener("click", () => {
+  if (_identityCache) copyText(_identityCache.fin);
+});
+
+document.getElementById("copyIdNumber").addEventListener("click", () => {
+  if (_identityCache) copyText(_identityCache.idNumber);
+});
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js");
+  });
+}
+</script>
+
+</body>
+</html>

@@ -1,6 +1,19 @@
 
 {
-  "fin": "1XXXXXX",
-  "idNumber": "AZE123456"
-
+  "fin": "7F8NM6D",
+  "idNumber": "AA6845331",
+  "fullName": "BAĞIROV ELCAN ILQAR OĞLU",
+  "birthDate": "07.03.2006",
+  "birthPlace": "Azərbaycan Respublikası, BAKI",
+  "registrationAddress": "BAKI ŞƏHƏRI, SURAXANI RAYONU, YENI GÜNƏŞLI QƏSƏBƏSI, Q YAŞAYIŞ SAHƏSI, EV 14, MƏNZIL 21",
+  "citizenship": "Azərbaycan Respublikası",
+  "issueDate": "04.04.2025",
+  "expiryDate": "03.04.2035",
+  "bloodGroup": "A(II)Rh+",
+  "gender": "Kişi",
+  "eyeColor": "Qəhvəyi",
+  "height": "188",
+  "maritalStatus": "Subay",
+  "militaryObligation": "Hərbi mükəlləfiyyətli",
+  "issuingAuthority": "Asan 2"
 }
