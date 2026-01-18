@@ -98,7 +98,7 @@ body{
 /* ===== WHITE TOP CARD ===== */
 .white-card{
   border-radius:22px;
-  padding:16px 18px 18px;
+  padding:16px 18px 12px;
   background:linear-gradient(135deg,#f8fbff 0%,#edf3ff 100%);
   color:var(--text-dark);
   border:1px solid rgba(0,0,0,.04);
@@ -115,13 +115,13 @@ body{
   display:flex;
   gap:0px;
   align-items:flex-start;
-  margin-top:8px;
+  margin-top:0;
 }
 
 .id-photo{
   width:96px;
   height:120px;
-  border-radius:12px;
+  border-radius:8px;
   object-fit:cover;
   border:1px solid rgba(0,0,0,.10);
   background:#e7eefc;
@@ -132,6 +132,7 @@ body{
   flex:1;
   min-width:0;
   padding-left:18px;
+  padding-top:12px;
 }
 
 /* ===== QR ROW (NO EXTRA CARD) ===== */
@@ -162,14 +163,14 @@ body{
   font-size:15px;
   font-weight:600;
   margin-top:-10px;
-  margin-bottom:8px;
+  margin-bottom:18px;
 }
 
 .info-row{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:12px;
+  margin-bottom:10px;
 }
 
 .label{
@@ -182,6 +183,12 @@ body{
   font-size:16px;
   letter-spacing:.3px;
   min-height:20px;
+}
+
+.value.bold-small{
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.2px;
 }
 
 .copy{
@@ -352,7 +359,7 @@ body{
         <div class="info-row">
           <div>
             <div class="label">FIN</div>
-            <div class="value" id="finValue"></div>
+            <div class="value bold-small" id="finValue"></div>
           </div>
           <div class="copy">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2767d5" stroke-width="2">
@@ -365,7 +372,7 @@ body{
         <div class="info-row" style="margin-bottom:0">
           <div>
             <div class="label">Vəsiqənin nömrəsi</div>
-            <div class="value" id="idNumberValue"></div>
+            <div class="value bold-small" id="idNumberValue"></div>
           </div>
           <div class="copy">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2767d5" stroke-width="2">
